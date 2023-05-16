@@ -1,0 +1,29 @@
+jwt:
+  token:
+    secret: jwtappdemo
+    expired: 3600000
+spring:
+  application:
+    name: JwtDemo
+  liquibase:
+    change-log: classpath:/db/changelog/changelog.xml
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      #ddl-auto: create
+    generate-ddl: false
+    #generate-ddl: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5442/testdb
+    username: user
+    password: password
+    driverClassName: org.postgresql.Driver
+
+  sql:
+    init:
+      platform: postgres
+server:
+  port: 8080
