@@ -3,6 +3,7 @@ package com.example.jwtdemo.service.userservice;
 import com.example.jwtdemo.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -10,11 +11,11 @@ public interface UserService {
 
     List<User> getAll();
 
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
-    User findById(Long id);
+    Optional<User> findById(Long id);
 
-    User findOnlyUsersById(Long id);
+    Optional<User> findOnlyUsersById(Long id);
 
     void delete(Long id);
 }

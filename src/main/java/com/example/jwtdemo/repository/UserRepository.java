@@ -5,8 +5,10 @@ import com.example.jwtdemo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String name);
+import java.util.Optional;
 
-    User findUserByIdAndRolesNotContaining(Long id, Role role);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String name);
+
+    Optional<User> findUserByIdAndRolesNotContaining(Long id, Role role);
 }

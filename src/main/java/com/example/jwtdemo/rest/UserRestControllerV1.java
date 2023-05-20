@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(value = "/api/v1/users")
 @RequiredArgsConstructor
@@ -19,12 +21,12 @@ public class UserRestControllerV1 {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id) {
-        User user = userService.findOnlyUsersById(id);
+        Optional<User> user = userService.findOnlyUsersById(id);
 
-        if (user == null) {
+        if (user.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<>(UserDto.fromUser(user), HttpStatus.OK);
+        return new ResponseEntity<>(UserDto.fromUser(user.get()), HttpStatus.OK);
     }
 }
