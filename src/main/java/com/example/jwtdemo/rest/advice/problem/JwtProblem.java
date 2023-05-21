@@ -1,4 +1,4 @@
-package com.example.jwtdemo.rest.exceptionhandler.problem;
+package com.example.jwtdemo.rest.advice.problem;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.servlet.http.HttpServletRequest;

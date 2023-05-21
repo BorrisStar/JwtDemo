@@ -1,6 +1,6 @@
 jwt:
   token:
-    secret: jwtappdemo
+    secret: qwertzuiopasdfghjklyxcvbnm1234567890
     expired: 3600000
 spring:
   application:
