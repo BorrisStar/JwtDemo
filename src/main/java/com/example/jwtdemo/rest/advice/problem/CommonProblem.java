@@ -15,15 +15,15 @@ import java.util.Optional;
         alphabetic = true
 )
 @RequiredArgsConstructor
-public class JwtProblem extends ThrowableProblem {
+public class CommonProblem extends ThrowableProblem {
     private final String detail;
     private final URI instance;
     private final Status status;
     private final String title;
     private final URI type;
 
-    public static JwtProblemBuilder builder() {
-        return new JwtProblemBuilder();
+    public static CommonProblemBuilder builder() {
+        return new CommonProblemBuilder();
     }
 
     public String getDetail() {
@@ -47,22 +47,22 @@ public class JwtProblem extends ThrowableProblem {
     }
 
 
-    public static class JwtProblemBuilder {
+    public static class CommonProblemBuilder {
         private String detail;
         private URI instance;
         private Status status;
         private String title;
         private URI type;
 
-        private JwtProblemBuilder() {
+        private CommonProblemBuilder() {
         }
 
-        public static JwtProblemBuilder prepareVrpProblemWithDetail(Exception exception, NativeWebRequest request, Status status, URI type) {
+        public static CommonProblemBuilder prepareVrpProblemWithDetail(Exception exception, NativeWebRequest request, Status status, URI type) {
             return prepareVrpProblemWithoutDetail(request, status, type).detail(exception.getMessage());
         }
 
-        public static JwtProblemBuilder prepareVrpProblemWithoutDetail(NativeWebRequest request, StatusType status, URI type) {
-            return JwtProblem.builder().type(type).title(status.getReasonPhrase()).status(prepareStatus(status)).instance(prepareInstance(request));
+        public static CommonProblemBuilder prepareVrpProblemWithoutDetail(NativeWebRequest request, StatusType status, URI type) {
+            return CommonProblem.builder().type(type).title(status.getReasonPhrase()).status(prepareStatus(status)).instance(prepareInstance(request));
         }
 
         private static Status prepareStatus(StatusType status) {
@@ -74,33 +74,33 @@ public class JwtProblem extends ThrowableProblem {
                     .map(HttpServletRequest::getRequestURI).map(URI::create).orElse(null);
         }
 
-        public JwtProblemBuilder detail(String detail) {
+        public CommonProblemBuilder detail(String detail) {
             this.detail = detail;
             return this;
         }
 
-        public JwtProblemBuilder instance(URI instance) {
+        public CommonProblemBuilder instance(URI instance) {
             this.instance = instance;
             return this;
         }
 
-        public JwtProblemBuilder status(Status status) {
+        public CommonProblemBuilder status(Status status) {
             this.status = status;
             return this;
         }
 
-        public JwtProblemBuilder title(String title) {
+        public CommonProblemBuilder title(String title) {
             this.title = title;
             return this;
         }
 
-        public JwtProblemBuilder type(URI type) {
+        public CommonProblemBuilder type(URI type) {
             this.type = type;
             return this;
         }
 
-        public JwtProblem build() {
-            return new JwtProblem(this.detail, this.instance, this.status, this.title, this.type);
+        public CommonProblem build() {
+            return new CommonProblem(this.detail, this.instance, this.status, this.title, this.type);
         }
 
         public String toString() {
