@@ -13,6 +13,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -22,13 +24,13 @@ public class AuthenticationService {
 
     public ResponseEntity<TokenResponseDto> login(String username, String password) {
         try {
-            User user = userService.findByUsername(username);
-            if (user == null) {
+            Optional<User> user = userService.findByUsername(username);
+            if (user.isEmpty()) {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");
             }
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-            String token = jwtTokenProvider.createToken(username, user.getRoles());
+            String token = jwtTokenProvider.createToken(username, user.get().getRoles());
 
             return ResponseEntity.ok(new TokenResponseDto(username, token));
         } catch (AuthenticationException e) {

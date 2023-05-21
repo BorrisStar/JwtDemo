@@ -17,7 +17,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ErrorInfo(UrlUtils.buildFullRequestUrl(request), "error.authorization");
     }
 
-    @Getter
     public record ErrorInfo(String url, String info) {
     }
 }
