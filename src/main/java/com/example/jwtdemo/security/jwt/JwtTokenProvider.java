@@ -32,7 +32,7 @@ public class JwtTokenProvider {
     private final UserDetailsService userDetailsService;
 
     public JwtTokenProvider(@Value("${jwt.token.secret}") String secret, UserDetailsService userDetailsService) {
-        this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(Base64.getEncoder().encodeToString(secret.getBytes())));
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.userDetailsService = userDetailsService;
     }
 
