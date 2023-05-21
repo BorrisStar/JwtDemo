@@ -31,7 +31,7 @@ public class JwtTokenProvider {
     private final UserDetailsService userDetailsService;
 
     public JwtTokenProvider(@Value("${jwt.token.secret}") String secret, UserDetailsService userDetailsService) {
-        this.secret = Base64.getEncoder().encodeToString(secret.getBytes());;
+        this.secret = Base64.getEncoder().encodeToString(secret.getBytes());
         this.userDetailsService = userDetailsService;
     }
 
