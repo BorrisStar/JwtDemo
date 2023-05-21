@@ -5,15 +5,14 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
 
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 @Data
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
     private String name;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)

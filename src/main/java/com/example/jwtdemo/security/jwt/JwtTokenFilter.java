@@ -22,7 +22,7 @@ public class JwtTokenFilter extends GenericFilterBean {
             throws IOException, ServletException {
 
         String token = jwtTokenProvider.getToken((HttpServletRequest) req);
-        if (token != null && jwtTokenProvider.validateTokenExpirationDate(token)) {
+        if (token != null && jwtTokenProvider.validateToken(token)) {
             Authentication auth = jwtTokenProvider.getAuthentication(token);
 
             if (auth != null) {
