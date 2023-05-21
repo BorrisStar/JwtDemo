@@ -1,7 +1,7 @@
 jwt:
   token:
     secret: qwertzuiopasdfghjklyxcvbnm1234567890
-    expired: 360
+    expired: 360000
 spring:
   application:
     name: JwtDemo
@@ -25,14 +25,6 @@ spring:
   sql:
     init:
       platform: postgres
-  mvc:
-    throw-exception-if-no-handler-found: true
-  web:
-    resources:
-      add-mappings: false
-  servlet:
-    encoding:
-      force: true
 server:
   port: 8080
 

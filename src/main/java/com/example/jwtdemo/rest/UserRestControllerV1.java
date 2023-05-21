@@ -1,6 +1,7 @@
 package com.example.jwtdemo.rest;
 
 import com.example.jwtdemo.dto.UserDto;
+import com.example.jwtdemo.exception.UserNotFoundException;
 import com.example.jwtdemo.model.User;
 import com.example.jwtdemo.service.userservice.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class UserRestControllerV1 {
         Optional<User> user = userService.findOnlyUsersById(id);
 
         if (user.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            throw new UserNotFoundException("User " + id + " not found");
         }
 
         return new ResponseEntity<>(UserDto.fromUser(user.get()), HttpStatus.OK);
