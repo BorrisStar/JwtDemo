@@ -30,7 +30,7 @@ public class AuthenticationService {
             }
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-            String token = jwtTokenProvider.createToken(username, user.get().getRoles());
+            String token = jwtTokenProvider.generateToken(username, user.get().getRoles());
 
             return ResponseEntity.ok(new TokenResponseDto(username, token));
         } catch (AuthenticationException e) {
